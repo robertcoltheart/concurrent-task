@@ -10,11 +10,9 @@ public class ConcurrentResult<T>
 
     public T? Input { get; }
 
-    public bool IsCanceled { get; }
+    public bool IsCompleted => true;
 
-    public bool IsCompleted { get; }
-
-    public bool IsCompletedSuccessfully { get; }
+    public bool IsCompletedSuccessfully => IsCompleted && !IsFaulted;
 
     public bool IsFaulted => Exception != null;
 
