@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcurrentTask", "src\ConcurrentTask\ConcurrentTask.csproj", "{BD551C71-8A01-4C90-A5BA-94F65243F490}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConcurrentTask.Tests", "src\ConcurrentTask.Tests\ConcurrentTask.Tests.csproj", "{745280DA-C20E-4890-B312-D8831E590664}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD551C71-8A01-4C90-A5BA-94F65243F490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD551C71-8A01-4C90-A5BA-94F65243F490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD551C71-8A01-4C90-A5BA-94F65243F490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD551C71-8A01-4C90-A5BA-94F65243F490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{745280DA-C20E-4890-B312-D8831E590664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{745280DA-C20E-4890-B312-D8831E590664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{745280DA-C20E-4890-B312-D8831E590664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{745280DA-C20E-4890-B312-D8831E590664}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29CF27C1-1E52-415A-B2DE-99C4464CDEC1}
+	EndGlobalSection
+EndGlobal
