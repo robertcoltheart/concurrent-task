@@ -1,5 +1,8 @@
 ﻿namespace System.Threading.Tasks;
 
+/// <summary>
+/// Provides support for concurrent task execution
+/// </summary>
 public static partial class Concurrent
 {
     private static async ValueTask Execute(ValueTask task, SemaphoreSlim semaphore)

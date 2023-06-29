@@ -9,17 +9,21 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <Authors>Robert Coltheart</Authors>
-    <Description>A thing that does something</Description>
+    <Description>A utility for running async tasks concurrently</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/robertcoltheart/ConcurrentTask</PackageProjectUrl>
     <RepositoryUrl>https://github.com/robertcoltheart/ConcurrentTask</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags></PackageTags>
+    <PackageTags>async task parallel concurrent</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ConcurrentTask.Tests" />
   </ItemGroup>
 
 </Project>

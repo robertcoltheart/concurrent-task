@@ -6,32 +6,32 @@ public static partial class Concurrent
 {
     public static IAsyncEnumerable<ConcurrentResult<T>> ForEachWithResultAsync<T>(
         IEnumerable<T> source,
-        Func<T, CancellationToken, ValueTask<T>> action)
+        Func<T, CancellationToken, ValueTask> action)
     {
-        return ForEachWithResultAsync<T>(source, Environment.ProcessorCount, CancellationToken.None, action);
+        return ForEachWithResultAsync(source, Environment.ProcessorCount, CancellationToken.None, action);
     }
 
     public static IAsyncEnumerable<ConcurrentResult<T>> ForEachWithResultAsync<T>(
         IEnumerable<T> source,
         CancellationToken cancellationToken,
-        Func<T, CancellationToken, ValueTask<T>> action)
+        Func<T, CancellationToken, ValueTask> action)
     {
-        return ForEachWithResultAsync<T>(source, Environment.ProcessorCount, CancellationToken.None, action);
+        return ForEachWithResultAsync(source, Environment.ProcessorCount, cancellationToken, action);
     }
 
     public static IAsyncEnumerable<ConcurrentResult<T>> ForEachWithResultAsync<T>(
         IEnumerable<T> source,
         int maxParallelism,
-        Func<T, CancellationToken, ValueTask<T>> action)
+        Func<T, CancellationToken, ValueTask> action)
     {
-        return ForEachWithResultAsync<T>(source, maxParallelism, CancellationToken.None, action);
+        return ForEachWithResultAsync(source, maxParallelism, CancellationToken.None, action);
     }
 
     public static IAsyncEnumerable<ConcurrentResult<T>> ForEachWithResultAsync<T>(
         IEnumerable<T> source,
         int maxParallelism,
         CancellationToken cancellationToken,
-        Func<T, CancellationToken, ValueTask<T>> action)
+        Func<T, CancellationToken, ValueTask> action)
     {
         return ForEachWithResultAsync(source, maxParallelism, (e, semaphore, token) => Execute(e, action, semaphore, token), cancellationToken);
     }
@@ -48,7 +48,7 @@ public static partial class Concurrent
         CancellationToken cancellationToken,
         Func<T, CancellationToken, ValueTask<TResult>> action)
     {
-        return ForEachWithResultAsync(source, Environment.ProcessorCount, CancellationToken.None, action);
+        return ForEachWithResultAsync(source, Environment.ProcessorCount, cancellationToken, action);
     }
 
     public static IAsyncEnumerable<ConcurrentResult<T, TResult>> ForEachWithResultAsync<T, TResult>(

@@ -18,19 +18,3 @@ public class ConcurrentResult<T>
 
     public Exception? Exception { get; }
 }
-
-public class ConcurrentResult<T, TResult> : ConcurrentResult<T>
-{
-    internal ConcurrentResult(T? input, TResult? result, Exception? exception = null)
-        : base(input, exception)
-    {
-        Result = result;
-    }
-
-    internal ConcurrentResult(T? input, Exception? exception = null)
-        : base(input, exception)
-    {
-    }
-
-    public TResult? Result { get; }
-}
