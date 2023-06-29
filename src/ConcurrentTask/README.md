@@ -1,7 +1,5 @@
 ﻿## ConcurrentTask
 
-[![NuGet](https://img.shields.io/nuget/v/ConcurrentTask?style=for-the-badge)](https://www.nuget.org/packages/ConcurrentTask) [![License](https://img.shields.io/github/license/robertcoltheart/concurrent-task?style=for-the-badge)](https://github.com/robertcoltheart/concurrent-task/blob/master/LICENSE)
-
 Why use concurrent tasks?
 
 Typically, `Parallel.ForEach` is used for running parallel tasks that are CPU-bound. There is a chance that using
@@ -44,9 +42,6 @@ await foreach (var result in results)
 ```
 
 By default, `Environment.ProcessorCount` is used to limit the number of concurrent tasks.
-
-## Contributing
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to this project.
 
 ## Acknowledgements
 Borrowed from the excellent [SafeParallelAsync](https://github.com/NewOrbit/SafeParallelAsync) :heart:
