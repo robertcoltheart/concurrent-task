@@ -11,8 +11,8 @@
     <Authors>Robert Coltheart</Authors>
     <Description>A utility for running async tasks concurrently</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/robertcoltheart/ConcurrentTask</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/robertcoltheart/ConcurrentTask</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/robertcoltheart/concurrent-task</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/robertcoltheart/concurrent-task</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>async task parallel concurrent</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
