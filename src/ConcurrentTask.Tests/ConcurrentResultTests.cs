@@ -1,11 +1,10 @@
-using Xunit;
 
 namespace System.Threading.Tasks.Tests;
 
 public class ConcurrentResultTests
 {
-    [Fact]
-    public void PropertiesSet()
+    [Test]
+    public async Task PropertiesSet()
     {
         var input = new object();
         var result = new object();
@@ -13,34 +12,35 @@ public class ConcurrentResultTests
 
         var concurrentResult = new ConcurrentResult<object, object>(input, result, exception);
 
-        Assert.Same(input, concurrentResult.Input);
-        Assert.Same(result, concurrentResult.Result);
-        Assert.Same(exception, concurrentResult.Exception);
+        await Assert.That(concurrentResult.Input).IsSameReferenceAs(input);
+        await Assert.That(concurrentResult.Result).IsSameReferenceAs(result);
+        await Assert.That(concurrentResult.Exception).IsSameReferenceAs(exception);
     }
 
-    [Fact]
-    public void IsAlwaysCompleted()
+    [Test]
+    public async Task IsAlwaysCompleted()
     {
         var result = new ConcurrentResult<object>(null);
 
-        Assert.True(result.IsCompleted);
+        await Assert.That(result.IsCompleted).IsTrue();
     }
 
-    [Fact]
-    public void IsFaultedIfExceptionSet()
+    [Test]
+    public async Task IsFaultedIfExceptionSet()
     {
         var result = new ConcurrentResult<object>(null, new Exception());
 
-        Assert.True(result.IsFaulted);
-        Assert.False(result.IsCompletedSuccessfully);
+        await Assert.That(result.IsFaulted).IsTrue();
+        await Assert.That(result.IsCompletedSuccessfully).IsFalse();
+
     }
 
-    [Fact]
-    public void IsNotFaultedIfNoExceptionSet()
+    [Test]
+    public async Task IsNotFaultedIfNoExceptionSet()
     {
         var result = new ConcurrentResult<object>(null);
 
-        Assert.False(result.IsFaulted);
-        Assert.True(result.IsCompletedSuccessfully);
+        await Assert.That(result.IsFaulted).IsFalse();
+        await Assert.That(result.IsCompletedSuccessfully).IsTrue();
     }
 }

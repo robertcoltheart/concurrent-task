@@ -1,12 +1,11 @@
 using System.Collections.Concurrent;
 using System.Threading.Tasks.Tests.Fixtures;
-using Xunit;
 
 namespace System.Threading.Tasks.Tests;
 
 public class ConcurrentResultAsyncEnumerableTests
 {
-    [Fact]
+    [Test]
     public async Task EachItemIsProcessedOnce()
     {
         var values = Enumerable.Range(1, 100).ToArray();
@@ -22,12 +21,12 @@ public class ConcurrentResultAsyncEnumerableTests
             used.Add(value);
         }
 
-        Assert.Equal(100, used.Count);
-        Assert.Equal(values, used.Select(x => x.Input).OrderBy(x => x));
-        Assert.All(used, x => Assert.True(x.IsCompletedSuccessfully));
+        await Assert.That(used).Count().IsEqualTo(100);
+        await Assert.That(values).IsEquivalentTo(used.Select(x => x.Input));
+        await Assert.That(used).All(x => x.IsCompletedSuccessfully);
     }
 
-    [Fact]
+    [Test]
     public async Task MaxParallelismIsObeyed()
     {
         const int maxParallelism = 10;
@@ -48,7 +47,7 @@ public class ConcurrentResultAsyncEnumerableTests
 
             await Task.Delay(200);
 
-            Assert.True(concurrentCount <= maxParallelism);
+            await Assert.That(concurrentCount).IsLessThanOrEqualTo(maxParallelism);
 
             Interlocked.Decrement(ref concurrentCount);
         }
@@ -57,10 +56,10 @@ public class ConcurrentResultAsyncEnumerableTests
         {
         }
 
-        Assert.Equal(maxParallelism, maxTasks);
+        await Assert.That(maxTasks).IsEqualTo(maxParallelism);
     }
 
-    [Fact]
+    [Test]
     public async Task CanCancelExecution()
     {
         var values = Enumerable.Range(1, 100);
@@ -79,11 +78,10 @@ public class ConcurrentResultAsyncEnumerableTests
             used.Add(value);
         }
 
-        Assert.True(used.Count < 100);
-        Assert.True(used.Count > 0);
+        await Assert.That(used).Count().IsBetween(0, 100);
     }
 
-    [Fact]
+    [Test]
     public async Task ExceptionsIncludedInResults()
     {
         var values = Enumerable.Range(1, 100);
@@ -104,10 +102,9 @@ public class ConcurrentResultAsyncEnumerableTests
             used.Add(value);
         }
 
-        Assert.Equal(100, used.Count);
-        Assert.Equal(90, used.Count(x => x.IsCompletedSuccessfully));
-        Assert.Equal(10, used.Count(x => !x.IsCompletedSuccessfully));
-        Assert.NotNull(used.First(x => !x.IsCompletedSuccessfully).Exception);
-        Assert.Equal("Bad Leroy", used.First(x => !x.IsCompletedSuccessfully).Exception!.Message);
+        await Assert.That(used).Count().IsEqualTo(100);
+        await Assert.That(used.Where(x => x.IsCompletedSuccessfully)).Count().IsEqualTo(90);
+        await Assert.That(used.Where(x => !x.IsCompletedSuccessfully)).Count().IsEqualTo(10);
+        await Assert.That(used.First(x => !x.IsCompletedSuccessfully).Exception).IsNotNull().And.HasMessageEqualTo("Bad Leroy");
     }
 }

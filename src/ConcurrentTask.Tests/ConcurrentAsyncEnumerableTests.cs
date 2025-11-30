@@ -1,12 +1,11 @@
 using System.Collections.Concurrent;
 using System.Threading.Tasks.Tests.Fixtures;
-using Xunit;
 
 namespace System.Threading.Tasks.Tests;
 
 public class ConcurrentAsyncEnumerableTests
 {
-    [Fact]
+    [Test]
     public async Task EachItemIsProcessedOnce()
     {
         var values = Enumerable.Range(1, 100).ToArray();
@@ -20,11 +19,11 @@ public class ConcurrentAsyncEnumerableTests
 
         await Concurrent.ForEachAsync(AsyncEnumerableFixture.Wrap(values), Action);
 
-        Assert.Equal(100, used.Count);
-        Assert.Equal(values, used.OrderBy(x => x));
+        await Assert.That(used).Count().IsEqualTo(100);
+        await Assert.That(values).IsEquivalentTo(used);
     }
 
-    [Fact]
+    [Test]
     public async Task MaxParallelismIsObeyed()
     {
         const int maxParallelism = 10;
@@ -45,17 +44,17 @@ public class ConcurrentAsyncEnumerableTests
 
             await Task.Delay(200);
 
-            Assert.True(concurrentCount <= maxParallelism);
+            await Assert.That(concurrentCount).IsLessThanOrEqualTo(maxParallelism);
 
             Interlocked.Decrement(ref concurrentCount);
         }
 
         await Concurrent.ForEachAsync(AsyncEnumerableFixture.Wrap(values), maxParallelism, Action);
 
-        Assert.Equal(maxParallelism, maxTasks);
+        await Assert.That(maxTasks).IsEqualTo(maxParallelism);
     }
 
-    [Fact]
+    [Test]
     public async Task CanCancelExecution()
     {
         var values = Enumerable.Range(1, 100);
@@ -74,7 +73,6 @@ public class ConcurrentAsyncEnumerableTests
 
         await task;
 
-        Assert.True(used.Count < 100);
-        Assert.True(used.Count > 0);
+        await Assert.That(used).Count().IsBetween(0, 100);
     }
 }
