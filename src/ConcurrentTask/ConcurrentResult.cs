@@ -1,4 +1,4 @@
-﻿namespace System.Threading.Tasks;
+namespace System.Threading.Tasks;
 
 /// <summary>
 /// Provides completion status on the execution of a <see cref="Concurrent"/> invocation.

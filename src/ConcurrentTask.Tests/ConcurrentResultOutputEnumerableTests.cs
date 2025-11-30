@@ -1,4 +1,4 @@
-﻿using System.Collections.Concurrent;
+using System.Collections.Concurrent;
 using Xunit;
 
 namespace System.Threading.Tasks.Tests;

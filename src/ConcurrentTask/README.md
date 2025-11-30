@@ -1,4 +1,4 @@
-﻿## ConcurrentTask
+## ConcurrentTask
 
 Why use concurrent tasks?
 

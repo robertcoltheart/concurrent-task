@@ -1,4 +1,4 @@
-﻿namespace System.Threading.Tasks;
+namespace System.Threading.Tasks;
 
 /// <summary>
 /// Provides support for concurrent task execution
