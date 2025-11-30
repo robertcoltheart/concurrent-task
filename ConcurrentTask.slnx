@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/ConcurrentTask.Tests/ConcurrentTask.Tests.csproj" />
+  <Project Path="src/ConcurrentTask/ConcurrentTask.csproj" />
+</Solution>
